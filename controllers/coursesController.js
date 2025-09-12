@@ -38,7 +38,7 @@ exports.updateCourse = (req, res) => {
   const { id } = req.params;
   const { code, title, units } = req.body;
   db.query('UPDATE courses SET code=?, title=?, units=? WHERE id=?',
-    [code, title || units || id],
+    [code, title, units, id],
     (err, result) => {
          if (err) {
             if (err.code === 'ER_DUP_ENTRY') { return res.status(409).json({ error: 'course code must be unique' });
